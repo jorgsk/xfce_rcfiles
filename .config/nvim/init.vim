@@ -3,8 +3,26 @@
 
 call plug#begin('~/.vim/plugged')
 
+" test utilsnips for latex
+Plug 'SirVer/ultisnips'
+
+" you need this, otherwise only .latex files will be expanded, not .tex
+let g:tex_flavor = "latex"
+
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
+
+"Plug 'kiryph/vim-snippets'
+Plug 'honza/vim-snippets'
+
+"Plug 'honz/vim-snippets'
+
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-" assuming you're using vim-plug: https://github.com/junegunn/vim-plug
+"
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
@@ -65,6 +83,7 @@ nmap <C-e> <Plug>delimitMateS-Tab
 Plug 'ludovicchabant/vim-gutentags'
 nmap ]t :tnext<CR>
 nmap [t :tlast<CR>
+let g:gutentags_exclude_filetypes=['tex']
 
 """""""""""""""""""""""""" EnhancedCommentify """"""""""""""""""""
 Plug 'hrp/EnhancedCommentify'
