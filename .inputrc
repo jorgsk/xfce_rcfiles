@@ -25,3 +25,6 @@ Control-k: menu-complete-backward
 
 # useful when completing a lot of filenames
 set completion-prefix-display-length 3
+
+# get trailing slash after symlinked dirs
+set mark-symlinked-directories on
