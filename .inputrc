@@ -1,0 +1,27 @@
+# Up and down arrows for history completion
+"\e[A": history-search-backward            # arrow up
+"\e[B": history-search-forward             # arrow down
+
+#  Ignore case while completing
+set completion-ignore-case on
+
+# mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e[5C": forward-word
+"\e[5D": backward-word
+"\e\e[C": forward-word
+"\e\e[D": backward-word
+
+# Colored completion
+set colored-stats on
+
+# Show suggestions immediately
+set show-all-if-ambiguous On
+
+# Cycle through options
+Control-j: menu-complete
+Control-k: menu-complete-backward
+
+# useful when completing a lot of filenames
+set completion-prefix-display-length 3
