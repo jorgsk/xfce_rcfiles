@@ -108,6 +108,10 @@ set tabstop=4 "tab=4 columns (=4 spaces with expandtab on)"
 nnoremap <F12> :b#<CR>
 inoremap <F12> <ESC>:b#<CR>
 
+" Line length
+autocmd bufreadpre *.tex setlocal textwidth=110
+autocmd bufreadpre *.py setlocal textwidth=90
+
 " replace multiple instances on the same line by default
 set gdefault
 
@@ -149,6 +153,12 @@ nnoremap <silent><expr> <f2> ':set wrap! go'.'-+'[&wrap]."=b\r"
 set scrolloff=1000
 
 set nohlsearch
+
+" Shortcut to edit THIS configuration file: (e)dit (c)onfiguration
+nnoremap <silent> <leader>ec :e $MYVIMRC<CR>
+
+" Shortcut to source (reload) THIS configuration file after editing it: (s)ource (c)onfiguraiton
+nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
 
 " For Neovim
 set termguicolors
