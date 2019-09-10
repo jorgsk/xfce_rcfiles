@@ -3,20 +3,24 @@
 
 call plug#begin('~/.vim/plugged')
 
+" nord scheme
+Plug 'arcticicestudio/nord-vim'
+Plug 'nanotech/jellybeans.vim'
+
 " test utilsnips for latex
 Plug 'SirVer/ultisnips'
 
 " you need this, otherwise only .latex files will be expanded, not .tex
 let g:tex_flavor = "latex"
 
+" trying vimtex again to get rid of the annoying _ and ^ highlights. will it
+" slow down everything again?
+Plug 'lervag/vimtex'
+
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
-
-"Plug 'kiryph/vim-snippets'
 Plug 'honza/vim-snippets'
 
 "Plug 'honz/vim-snippets'
@@ -164,5 +168,4 @@ nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
 set termguicolors
 
 set background=dark
-colorscheme irblack
-
+colorscheme jellybeans
