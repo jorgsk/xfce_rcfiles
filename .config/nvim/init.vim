@@ -30,6 +30,16 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
+" Ale for linting
+Plug 'dense-analysis/ale'
+let g:ale_linters = {
+\   'python': ['flake8', 'mypy'],
+\}
+" Linter options (wish ale could use the liters' config files)
+let g:ale_python_mypy_options = '--warn-no-return --ignore-missing-imports'
+let g:ale_python_flake8_options = '--ignore=E501'
+"
+"""""""""""""" NCM 2"""""""""""""""""
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
 
@@ -166,6 +176,9 @@ nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
 
 " For Neovim
 set termguicolors
+
+" Add tags for python 3rd party libraries
+autocmd Filetype python :setlocal tags+=~/.system_tags/python_tags
 
 set background=dark
 colorscheme jellybeans
