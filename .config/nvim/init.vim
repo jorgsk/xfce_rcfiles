@@ -1,7 +1,33 @@
 " first of all point to anaconda python installation
 "let g:python3_host_prog = '/home/jorgens/anaconda3/bin/python'
+"
+" Set mapleader to semicolion
+let mapleader =";"
 
 call plug#begin('~/.vim/plugged')
+
+" fancier status line which makes it easy to get git status for file
+Plug 'itchyny/lightline.vim'
+set noshowmode
+" git status line in lightline
+Plug 'itchyny/vim-gitbranch'
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
+
+" back to bufexplorer?
+Plug 'jlanzarotta/bufexplorer'
+nnoremap <leader>bf :BufExplorerVerticalSplit<CR>
+
+" fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+nnoremap <C-f> :FZF<CR>
 
 " nord scheme
 Plug 'arcticicestudio/nord-vim'
@@ -25,6 +51,7 @@ Plug 'honza/vim-snippets'
 
 "Plug 'honz/vim-snippets'
 
+" Color highligting based on syntax analysis
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 "
 Plug 'ncm2/ncm2'
@@ -35,6 +62,7 @@ Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \   'python': ['flake8', 'mypy'],
 \}
+let g:ale_set_highlights = 0 " could not config to be only underline, ugly red blob
 " Linter options (wish ale could use the liters' config files)
 let g:ale_python_mypy_options = '--warn-no-return --ignore-missing-imports'
 let g:ale_python_flake8_options = '--ignore=E501'
@@ -90,8 +118,8 @@ Plug 'hynek/vim-python-pep8-indent'
 
 " Skip out of brackets like '' and ()
 Plug 'Raimondi/delimitMate'
-imap <C-e> <Plug>delimitMateS-Tab
-nmap <C-e> <Plug>delimitMateS-Tab
+imap <C-l> <Plug>delimitMateS-Tab
+nmap <C-l> <Plug>delimitMateS-Tab
 
 """" Let's try something new: project gutentags does not store all your tags in one big file which is a mess
 Plug 'ludovicchabant/vim-gutentags'
@@ -113,10 +141,16 @@ Plug 'Soares/base16.nvim'
 
 call plug#end()
 
+" insert space in normal mode
+nnoremap <Space> i<Space><Right><ESC>
+
 """ Indentation
 set shiftwidth=4 "how many columns to shift when using >> and <<
 set expandtab "tab will produce spaces
 set tabstop=4 "tab=4 columns (=4 spaces with expandtab on)"
+
+" Default text width before linebreak
+set tw=95
 
 " Change between most recent buffers with F12 
 nnoremap <F12> :b#<CR>
@@ -137,8 +171,6 @@ map gs :%s/
 
 " Switch between buffers without saving
 set hidden
-" Set mapleader to semicolion
-let mapleader =";"
 
 " Spell settings
 " Use zi to pick the first suggested word and go to the next 'red' word!
@@ -150,8 +182,8 @@ imap <F4> <ESC>:setlocal spell!<CR>
 nmap <F4> <ESC>:setlocal spell!<CR>
 
 " Vim statusline
-set statusline=%F%m%r%h%w\ [%{&ff}]\ [%Y]\ [%04l,%04v][%p%%]\ [LEN=%L]\ %r
-set laststatus=2
+"set statusline=%F%m%r%h%w\ [%{&ff}]\ [%Y]\ [%04l,%04v][%p%%]\ [LEN=%L]\ %r
+"set laststatus=2
 
 " Enable copy paste to windows apps
 set clipboard=unnamed
@@ -178,7 +210,7 @@ nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
 set termguicolors
 
 " Add tags for python 3rd party libraries
-autocmd Filetype python :setlocal tags+=~/.system_tags/python_tags
+autocmd Filetype python :setlocal tags+=~/.python_standard_library_tags/python_tags
 
 set background=dark
 colorscheme jellybeans
